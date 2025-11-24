@@ -1,208 +1,292 @@
-# Bus Reservation System
+# 🚌 Bus Reservation System
 
-A desktop application for managing bus reservations built with Java Swing and MySQL database.
+A complete desktop application for managing bus reservations built with **Java Swing** and **MySQL** database using **JDBC** connectivity.
 
-## Features
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![Swing](https://img.shields.io/badge/Swing-GUI-orange?style=for-the-badge)
 
-- **Make Reservations**: Book bus tickets by entering passenger details, bus number, travel date, and number of seats
-- **View Available Buses**: Display all buses with real-time available seats calculation
-- **View Reservations**: Show all booking records in a table format
-- **Input Validation**: Comprehensive validation for all input fields
-- **Date Format Conversion**: Automatic conversion from DD-MM-YYYY to MySQL DATE format
-- **Dynamic Seat Availability**: Real-time calculation of available seats based on bookings
-- **Auto-Database Setup**: Automatically creates database and tables on first run
-- **Sample Data**: Includes sample bus data for immediate testing
+## ✨ Features
 
-## System Requirements
+- 🎫 **Make Reservations** - Book bus tickets with passenger details
+- 🚍 **View Available Buses** - Display all buses with real-time seat availability
+- 📋 **View Reservations** - Show all booking records
+- ✅ **Input Validation** - Comprehensive validation for all fields
+- 🔄 **Date Format Conversion** - Automatic DD-MM-YYYY to YYYY-MM-DD conversion
+- 💺 **Dynamic Seat Calculation** - Real-time available seats tracking
+- 🗄️ **Auto Database Setup** - Automatically creates database and tables
+- 📊 **Sample Data** - Includes 5 sample buses for testing
 
-- **Java**: JDK 8 or higher
-- **MySQL**: MySQL Server 5.7 or higher
-- **JDBC Driver**: MySQL Connector/J 8.0+
+## 📸 Screenshots
 
-## Database Configuration
+### Main Application Window
+The application features a clean, professional interface with input fields, action buttons, and data tables.
 
-The application uses the following default database settings:
+### Features in Action
+- **Make Reservation**: Enter passenger details and book seats
+- **Available Buses**: View all buses with real-time seat availability
+- **Reservations**: Track all bookings in a table format
 
-- **Database Name**: `bus_reservation`
-- **Host**: `localhost:3306`
-- **Username**: `root`
-- **Password**: `root`
+## 🛠️ Technology Stack
 
-To change these settings, edit the constants in `DatabaseConnection.java`:
+- **Language**: Java (JDK 8+)
+- **GUI Framework**: Java Swing
+- **Database**: MySQL 5.7+
+- **Connectivity**: JDBC (MySQL Connector/J 8.0.33)
+- **Build Tools**: Command-line compilation (batch/shell scripts provided)
 
-```java
-private static final String DB_URL = "jdbc:mysql://localhost:3306/";
-private static final String DB_NAME = "bus_reservation";
-private static final String DB_USER = "root";
-private static final String DB_PASSWORD = "root";
+## 📋 Prerequisites
+
+Before running the application, ensure you have:
+
+1. **Java Development Kit (JDK) 8 or higher**
+   - Download: [Oracle JDK](https://www.oracle.com/java/technologies/downloads/)
+   - Verify: `java -version`
+
+2. **MySQL Server 5.7 or higher**
+   - Download: [MySQL Community Server](https://dev.mysql.com/downloads/mysql/)
+   - Ensure MySQL is running on port 3306
+
+3. **MySQL Connector/J (JDBC Driver)**
+   - Included in `lib/` directory
+   - Or download: [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/)
+
+## 🚀 Quick Start
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/siddharthg-7/Bus_Reservation_System-using-jdbc-mysql.git
+cd Bus_Reservation_System-using-jdbc-mysql
 ```
 
-## Database Schema
+### 2. Configure Database Credentials
 
-### Table: bus_info
-Stores information about available buses.
+Edit `src/DatabaseConnection.java` (lines 15-16):
+
+```java
+private static final String DB_USER = "root";
+private static final String DB_PASSWORD = "your_mysql_password";
+```
+
+### 3. Compile the Application
+
+**Windows:**
+```bash
+compile.bat
+```
+
+**Linux/Mac:**
+```bash
+chmod +x compile.sh
+./compile.sh
+```
+
+### 4. Run the Application
+
+**Windows:**
+```bash
+run.bat
+```
+
+**Linux/Mac:**
+```bash
+chmod +x run.sh
+./run.sh
+```
+
+## 📁 Project Structure
+
+```
+Bus_Reservation_System-using-jdbc-mysql/
+├── src/
+│   ├── BusReservationSystem.java    # Main GUI application
+│   └── DatabaseConnection.java      # Database utility class
+├── lib/
+│   └── mysql-connector-j-8.0.33.jar # MySQL JDBC driver
+├── bin/                              # Compiled class files
+├── database/
+│   └── schema.sql                   # Database schema (optional)
+├── compile.bat / compile.sh         # Compilation scripts
+├── run.bat / run.sh                 # Execution scripts
+├── README.md                        # Main documentation
+├── SETUP.md                         # Detailed setup guide
+├── QUICKSTART.md                    # Quick start guide
+├── DATABASE_CONFIG.md               # Database configuration help
+└── .gitignore                       # Git ignore rules
+```
+
+## 💾 Database Schema
+
+### Table: `bus_info`
 
 | Column | Type | Description |
 |--------|------|-------------|
-| bus_number | VARCHAR(20) | Primary key, unique bus identifier |
-| bus_name | VARCHAR(100) | Name of the bus service |
+| bus_number | VARCHAR(20) PK | Unique bus identifier |
+| bus_name | VARCHAR(100) | Bus service name |
 | source | VARCHAR(100) | Starting location |
 | destination | VARCHAR(100) | Ending location |
 | departure_time | TIME | Departure time |
 | arrival_time | TIME | Arrival time |
-| fare | DECIMAL(10,2) | Ticket price |
-| total_seats | INT | Total seats in the bus |
+| fare | DECIMAL(10,2) | Ticket price (₹) |
+| total_seats | INT | Total seats available |
 
-### Table: reservations
-Stores passenger booking records.
+### Table: `reservations`
 
 | Column | Type | Description |
 |--------|------|-------------|
-| id | INT | Auto-increment primary key |
-| passenger_name | VARCHAR(100) | Name of the passenger |
-| bus_number | VARCHAR(20) | Foreign key to bus_info |
+| id | INT AUTO_INCREMENT PK | Unique booking ID |
+| passenger_name | VARCHAR(100) | Passenger name |
+| bus_number | VARCHAR(20) FK | Reference to bus_info |
 | travel_date | DATE | Date of travel |
 | seats | INT | Number of seats booked |
 
-## Installation & Setup
+## 🎯 Sample Data
 
-### 1. Install MySQL Server
+The application includes 5 pre-configured buses:
 
-Make sure MySQL Server is installed and running on your system.
+| Bus Number | Route | Timing | Fare | Seats |
+|------------|-------|--------|------|-------|
+| BUS001 | Mumbai → Pune | 06:00 - 09:30 | ₹350 | 40 |
+| BUS002 | Delhi → Jaipur | 08:00 - 13:00 | ₹800 | 45 |
+| BUS003 | Bangalore → Chennai | 22:00 - 06:00 | ₹950 | 35 |
+| BUS004 | Hyderabad → Vijayawada | 14:00 - 18:30 | ₹450 | 50 |
+| BUS005 | Kolkata → Bhubaneswar | 07:30 - 15:00 | ₹750 | 38 |
 
-### 2. Download MySQL Connector/J
-
-Download the MySQL JDBC driver from:
-https://dev.mysql.com/downloads/connector/j/
-
-Extract the JAR file (e.g., `mysql-connector-j-8.0.33.jar`)
-
-### 3. Clone or Download the Project
-
-```bash
-git clone <repository-url>
-cd javabusreservation
-```
-
-### 4. Compile the Application
-
-Navigate to the project directory and compile with the MySQL connector in classpath:
-
-**Windows:**
-```bash
-javac -cp ".;path\to\mysql-connector-j-8.0.33.jar" src\*.java
-```
-
-**Linux/Mac:**
-```bash
-javac -cp ".:path/to/mysql-connector-j-8.0.33.jar" src/*.java
-```
-
-### 5. Run the Application
-
-**Windows:**
-```bash
-java -cp ".;path\to\mysql-connector-j-8.0.33.jar;src" BusReservationSystem
-```
-
-**Linux/Mac:**
-```bash
-java -cp ".:path/to/mysql-connector-j-8.0.33.jar:src" BusReservationSystem
-```
-
-## Usage Guide
+## 📖 Usage Guide
 
 ### Making a Reservation
 
-1. Enter the travel date in **DD-MM-YYYY** format (e.g., 25-11-2025)
-2. Enter the passenger name
-3. Enter the bus number (e.g., BUS001)
-4. Enter the number of seats to book
-5. Click **"Make Reservation"** button
-6. A success message will appear if the booking is successful
+1. Enter travel date in **DD-MM-YYYY** format (e.g., `25-12-2025`)
+2. Enter passenger name
+3. Enter bus number (e.g., `BUS001`)
+4. Enter number of seats
+5. Click **"Make Reservation"**
+6. Success message will confirm the booking
 
 ### Viewing Available Buses
 
 1. Click **"Show Available Buses"** button
-2. The table will display all buses with:
+2. Table displays all buses with:
    - Bus details (number, name, route, timings, fare)
    - Total seats
-   - **Available seats** (dynamically calculated)
+   - Available seats (dynamically calculated)
 
 ### Viewing Reservations
 
 1. Click **"Show Reservations"** button
-2. The table will display all bookings with passenger details
+2. Table displays all bookings with passenger details
 
-## Sample Bus Data
-
-The application includes 5 sample buses for testing:
-
-| Bus Number | Name | Route | Departure | Arrival | Fare | Seats |
-|------------|------|-------|-----------|---------|------|-------|
-| BUS001 | Express Deluxe | Mumbai → Pune | 06:00 | 09:30 | ₹350 | 40 |
-| BUS002 | Volvo AC | Delhi → Jaipur | 08:00 | 13:00 | ₹800 | 45 |
-| BUS003 | Sleeper Coach | Bangalore → Chennai | 22:00 | 06:00 | ₹950 | 35 |
-| BUS004 | Semi Sleeper | Hyderabad → Vijayawada | 14:00 | 18:30 | ₹450 | 50 |
-| BUS005 | Luxury AC | Kolkata → Bhubaneswar | 07:30 | 15:00 | ₹750 | 38 |
-
-## Input Validation
+## ✅ Input Validation
 
 The application validates:
 
-- ✅ All fields must be filled
-- ✅ Date must be in DD-MM-YYYY format
-- ✅ Seats must be a positive number
-- ✅ Bus number must exist in the database
-- ✅ Requested seats must not exceed available seats
+- ✓ All fields must be filled
+- ✓ Date must be in DD-MM-YYYY format
+- ✓ Seats must be a positive number
+- ✓ Bus number must exist in database
+- ✓ Requested seats ≤ available seats
 
-## Error Handling
+## 🔧 Troubleshooting
 
-The application handles:
+### Access Denied Error
 
-- Database connection errors
-- Invalid date formats
-- Insufficient seat availability
-- Non-existent bus numbers
-- Invalid input data
+**Error**: `Access denied for user 'root'@'localhost'`
 
-## Project Structure
+**Solution**:
+1. Update `DB_PASSWORD` in `src/DatabaseConnection.java`
+2. Recompile: `compile.bat`
+3. Run: `run.bat`
 
+### Communications Link Failure
+
+**Error**: `Communications link failure`
+
+**Solution**:
+- Ensure MySQL server is running
+- Verify it's on port 3306
+- Check firewall settings
+
+### MySQL JDBC Driver Not Found
+
+**Error**: `MySQL JDBC Driver not found`
+
+**Solution**:
+- Ensure `lib/mysql-connector-j-8.0.33.jar` exists
+- Recompile with correct classpath
+
+## 📚 Documentation
+
+- **[README.md](README.md)** - This file
+- **[SETUP.md](SETUP.md)** - Detailed setup instructions
+- **[QUICKSTART.md](QUICKSTART.md)** - Quick start guide
+- **[DATABASE_CONFIG.md](DATABASE_CONFIG.md)** - Database configuration
+- **[DOWNLOAD_MYSQL_CONNECTOR.md](DOWNLOAD_MYSQL_CONNECTOR.md)** - Connector guide
+
+## 🎨 Key Features Implementation
+
+### Dynamic Seat Availability
+
+```sql
+SELECT (total_seats - COALESCE(SUM(booked_seats), 0)) as available_seats
+FROM bus_info b
+LEFT JOIN reservations r ON b.bus_number = r.bus_number
+GROUP BY b.bus_number
 ```
-javabusreservation/
-├── src/
-│   ├── BusReservationSystem.java    # Main GUI application
-│   └── DatabaseConnection.java      # Database utility class
-├── database/
-│   └── schema.sql                   # Database schema (optional)
-└── README.md                        # This file
+
+### Date Format Conversion
+
+```java
+SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
+SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+Date date = inputFormat.parse(userInput);
+String mysqlDate = outputFormat.format(date);
 ```
 
-## Troubleshooting
+### Auto Database Initialization
 
-### MySQL Connection Error
+```java
+// Creates database if not exists
+stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS bus_reservation");
 
-If you get a connection error:
-1. Verify MySQL server is running
-2. Check username and password in `DatabaseConnection.java`
-3. Ensure MySQL is listening on port 3306
+// Creates tables if not exist
+// Inserts sample data if empty
+```
 
-### ClassNotFoundException
+## 🤝 Contributing
 
-If you get "MySQL JDBC Driver not found":
-1. Ensure `mysql-connector-j-*.jar` is in your classpath
-2. Check the `-cp` parameter when running the application
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-### Table Already Exists Error
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-The application automatically creates tables if they don't exist. If you encounter issues:
-1. Drop the existing database: `DROP DATABASE bus_reservation;`
-2. Restart the application
-
-## License
+## 📝 License
 
 This project is open source and available for educational purposes.
 
-## Author
+## 👨‍💻 Author
 
-Built with Java Swing and MySQL for desktop bus reservation management.
+**Siddharth G**
+- GitHub: [@siddharthg-7](https://github.com/siddharthg-7)
+
+## 🙏 Acknowledgments
+
+- Java Swing for the GUI framework
+- MySQL for the database
+- JDBC for database connectivity
+
+## 📞 Support
+
+For issues or questions:
+- Open an issue on GitHub
+- Check the documentation files
+- Review error messages in console
+
+---
+
+**⭐ If you find this project useful, please consider giving it a star!**
+
+Made with ❤️ using Java Swing and MySQL
