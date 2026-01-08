@@ -1,4 +1,4 @@
-# 🚌 Bus Reservation System
+#  Bus Reservation System
 
 A complete desktop application for managing bus reservations built with **Java Swing** and **MySQL** database using **JDBC** connectivity.
 
@@ -6,18 +6,18 @@ A complete desktop application for managing bus reservations built with **Java S
 ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 ![Swing](https://img.shields.io/badge/Swing-GUI-orange?style=for-the-badge)
 
-## ✨ Features
+##  Features
 
-- 🎫 **Make Reservations** - Book bus tickets with passenger details
-- 🚍 **View Available Buses** - Display all buses with real-time seat availability
-- 📋 **View Reservations** - Show all booking records
-- ✅ **Input Validation** - Comprehensive validation for all fields
-- 🔄 **Date Format Conversion** - Automatic DD-MM-YYYY to YYYY-MM-DD conversion
-- 💺 **Dynamic Seat Calculation** - Real-time available seats tracking
-- 🗄️ **Auto Database Setup** - Automatically creates database and tables
-- 📊 **Sample Data** - Includes 5 sample buses for testing
+-  **Make Reservations** - Book bus tickets with passenger details
+-  **View Available Buses** - Display all buses with real-time seat availability
+-  **View Reservations** - Show all booking records
+-  **Input Validation** - Comprehensive validation for all fields
+-  **Date Format Conversion** - Automatic DD-MM-YYYY to YYYY-MM-DD conversion
+-  **Dynamic Seat Calculation** - Real-time available seats tracking
+-  **Auto Database Setup** - Automatically creates database and tables
+-  **Sample Data** - Includes 5 sample buses for testing
 
-## 📸 Screenshots
+##  Screenshots
 
 ### Main Application Window
 The application features a clean, professional interface with input fields, action buttons, and data tables.
@@ -27,7 +27,7 @@ The application features a clean, professional interface with input fields, acti
 - **Available Buses**: View all buses with real-time seat availability
 - **Reservations**: Track all bookings in a table format
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - **Language**: Java (JDK 8+)
 - **GUI Framework**: Java Swing
@@ -35,7 +35,7 @@ The application features a clean, professional interface with input fields, acti
 - **Connectivity**: JDBC (MySQL Connector/J 8.0.33)
 - **Build Tools**: Command-line compilation (batch/shell scripts provided)
 
-## 📋 Prerequisites
+##  Prerequisites
 
 Before running the application, ensure you have:
 
@@ -51,7 +51,7 @@ Before running the application, ensure you have:
    - Included in `lib/` directory
    - Or download: [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/)
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Clone the Repository
 
@@ -60,7 +60,7 @@ git clone https://github.com/siddharthg-7/Bus_Reservation_System-using-jdbc-mysq
 cd Bus_Reservation_System-using-jdbc-mysql
 ```
 
-### 2. Configure Database Credentials
+### . Configure Database Credentials
 
 Edit `src/DatabaseConnection.java` (lines 15-16):
 
@@ -69,7 +69,7 @@ private static final String DB_USER = "root";
 private static final String DB_PASSWORD = "your_mysql_password";
 ```
 
-### 3. Compile the Application
+###  Compile the Application
 
 **Windows:**
 ```bash
@@ -95,7 +95,7 @@ chmod +x run.sh
 ./run.sh
 ```
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 Bus_Reservation_System-using-jdbc-mysql/
@@ -116,7 +116,7 @@ Bus_Reservation_System-using-jdbc-mysql/
 └── .gitignore                       # Git ignore rules
 ```
 
-## 💾 Database Schema
+##  Database Schema
 
 ### Table: `bus_info`
 
@@ -141,7 +141,7 @@ Bus_Reservation_System-using-jdbc-mysql/
 | travel_date | DATE | Date of travel |
 | seats | INT | Number of seats booked |
 
-## 🎯 Sample Data
+##  Sample Data
 
 The application includes 5 pre-configured buses:
 
@@ -153,7 +153,7 @@ The application includes 5 pre-configured buses:
 | BUS004 | Hyderabad → Vijayawada | 14:00 - 18:30 | ₹450 | 50 |
 | BUS005 | Kolkata → Bhubaneswar | 07:30 - 15:00 | ₹750 | 38 |
 
-## 📖 Usage Guide
+##  Usage Guide
 
 ### Making a Reservation
 
@@ -177,7 +177,7 @@ The application includes 5 pre-configured buses:
 1. Click **"Show Reservations"** button
 2. Table displays all bookings with passenger details
 
-## ✅ Input Validation
+##  Input Validation
 
 The application validates:
 
@@ -187,7 +187,7 @@ The application validates:
 - ✓ Bus number must exist in database
 - ✓ Requested seats ≤ available seats
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Access Denied Error
 
@@ -215,7 +215,7 @@ The application validates:
 - Ensure `lib/mysql-connector-j-8.0.33.jar` exists
 - Recompile with correct classpath
 
-## 📚 Documentation
+##  Documentation
 
 - **[README.md](README.md)** - This file
 - **[SETUP.md](SETUP.md)** - Detailed setup instructions
@@ -223,7 +223,7 @@ The application validates:
 - **[DATABASE_CONFIG.md](DATABASE_CONFIG.md)** - Database configuration
 - **[DOWNLOAD_MYSQL_CONNECTOR.md](DOWNLOAD_MYSQL_CONNECTOR.md)** - Connector guide
 
-## 🎨 Key Features Implementation
+##  Key Features Implementation
 
 ### Dynamic Seat Availability
 
@@ -253,7 +253,7 @@ stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS bus_reservation");
 // Inserts sample data if empty
 ```
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -263,22 +263,22 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+##  License
 
 This project is open source and available for educational purposes.
 
-## 👨‍💻 Author
+##  Author
 
 **Siddharth G**
 - GitHub: [@siddharthg-7](https://github.com/siddharthg-7)
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Java Swing for the GUI framework
 - MySQL for the database
 - JDBC for database connectivity
 
-## 📞 Support
+##  Support
 
 For issues or questions:
 - Open an issue on GitHub
